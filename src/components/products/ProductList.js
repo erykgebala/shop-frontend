@@ -3,12 +3,11 @@ import Product from './Product';
 import './ProductList.css'
 import axios from '../../axiosConfig'; 
 
-function ProductList() {
+function ProductList(props) {
     const [products, setProducts] = useState([]);
 
     useEffect(() =>{
         axios.get('/products').then((products) => {
-            console.log(products)
             setProducts(products.data);
         })
     }, []);
@@ -16,7 +15,7 @@ function ProductList() {
     return (
         <div className="product-list">
             {products.map(product => {
-               return <Product product={product}/> 
+               return <Product key={product._id} product={product} mode={props.mode}/> 
             })}
         </div>
     )
