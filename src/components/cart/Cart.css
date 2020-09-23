@@ -1,0 +1,23 @@
+.cart-container {
+    display: flex;
+    padding-top: 20px;
+    flex-direction: column;
+}
+.cart-container > Button {
+    margin: 10px auto;
+}
+.cart-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.cart-item {
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+    padding: 10px;
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}

@@ -13,7 +13,7 @@ function AddProductForm() {
     
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.post('/products', {
+        axios.post('/api/products', {
             name: productName,
             price: productPrice,
             imageUrl: productImageUrl,
@@ -21,8 +21,6 @@ function AddProductForm() {
         }).then(() => {
             history.push('/products');
         });
-
-
     }
 
     return (

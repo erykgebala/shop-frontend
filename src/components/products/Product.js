@@ -11,18 +11,16 @@ function Product(props) {
         history.push('/product-details/' + props.product._id);
     }
 
-    const deleteProduct = (event) => {
-        event.preventDefault();
-        axios.delete('/products/' + props.product._id).then((products) => {
-            history.push('manage-product');
-        })
-    }
-
     const getProduct = (event) => {
         event.preventDefault();
-        axios.get('/products/' + props.product._id).then((products) => {
-            history.push('manage-product');
-        })
+        history.push('/product-details/' + props.product._id);
+    }
+
+    const addToCart = (event) => {
+        event.preventDefault();
+        axios.post('/api/cart', {productId: props.product._id}).then((products) => {
+            history.push('/cart');
+        });
     }
 
 
@@ -30,19 +28,19 @@ function Product(props) {
     if (props.mode === 'DETAILS') {
         button = 
             <div>
-                <Button variant="primary">Do koszyka</Button>
+                <Button onClick={(e) => addToCart(e)} variant="primary">Do koszyka</Button>
             </div>
     } else if (props.mode === 'USER') {
         button = 
             <div>
                 <Button onClick={(e) => productDetails(e)} className="mr-2" variant="primary">Szczegóły</Button>
-                <Button variant="primary">Do koszyka</Button>
+                <Button onClick={(e) => addToCart(e)}  variant="primary">Do koszyka</Button>
             </div>
     } else {
         button = 
             <div>
                 <Button onClick={(e) => getProduct(e)} className="mr-2" variant="primary">Aktualizuj</Button>
-                <Button onClick={(e) => deleteProduct(e)} variant="primary">Usuń</Button>
+                <Button onClick={(e) => props.deleteProduct(e, props.product._id)} variant="danger">Usuń</Button>
             </div>
     }
 
@@ -57,7 +55,6 @@ function Product(props) {
                 <Card.Text>
                     {props.product.desc}
                 </Card.Text>
-                
                 {button}
             </Card.Body>
         </Card>

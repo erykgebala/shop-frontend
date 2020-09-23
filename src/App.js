@@ -3,8 +3,11 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 import Header from './components/common/Header';
 import AddProductForm from './components/products/AddProductForm';
+import Cart from './components/cart/Cart';
 import ProductDetails from './components/products/ProductDetails';
 import ProductList from './components/products/ProductList';
+import ManageProducts from './components/products/ManageProducts';
+import Shop from './components/products/Shop';
 
 function App() {
   return (
@@ -13,7 +16,7 @@ function App() {
           <Switch>
             <Route path="/products">
                 <Header/>
-                <ProductList mode={'USER'}/>
+                <Shop/>
             </Route>
             <Route path="/product-details/:id">
                 <Header/>
@@ -21,11 +24,10 @@ function App() {
             </Route>
             <Route path="/cart">
                 <Header/>
-                <ProductList/>
+                <Cart/>
             </Route>
             <Route path="/orders">
                 <Header/>
-                <ProductList/>
             </Route>
             <Route path="/add-product">
                 <Header/>
@@ -33,11 +35,11 @@ function App() {
             </Route>
             <Route path="/manage-product">
                 <Header/>
-                <ProductList mode={'ADMIN'}/>
+                <ManageProducts/>
             </Route>
             <Route path="/">
                 <Header/>
-                <ProductList/>
+                <Shop/>
             </Route>
           </Switch>
         </Router>
