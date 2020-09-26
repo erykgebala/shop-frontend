@@ -5,10 +5,10 @@ import Header from './components/common/Header';
 import AddProductForm from './components/products/AddProductForm';
 import Cart from './components/cart/Cart';
 import ProductDetails from './components/products/ProductDetails';
-import ProductList from './components/products/ProductList';
 import ManageProducts from './components/products/ManageProducts';
 import Shop from './components/products/Shop';
 import OrderList from './components/order/OrderList';
+import LoginForm from './components/login/LoginForm';
 
 function App() {
   return (
@@ -42,6 +42,10 @@ function App() {
             <Route path="/manage-products">
                 <Header/>
                 <ManageProducts/>
+            </Route>
+            <Route path="/login">
+                <Header/>
+                <LoginForm/>
             </Route>
             <Route path="/">
                 <Header/>

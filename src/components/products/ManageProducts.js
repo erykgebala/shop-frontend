@@ -12,7 +12,7 @@ function ManageProducts(props) {
             setProducts(products.data);
         })
     }
-
+    
     useEffect(() =>{
         getProducts();
     }, []);

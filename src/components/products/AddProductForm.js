@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useParams } from 'react-router-dom';
-import './AddProductForm.css'
 import axios from '../../axiosConfig'; 
 import { useHistory } from 'react-router-dom';
+import { useStateValue } from '../../state/StateProvider';
+import  actionsTypes  from '../../state/actions';
+
 
 function AddProductForm() {
+    const [{currentLink}, dispatchAction] = useStateValue();
     const [productName, setProductName] = useState('');
     const [productPrice, setProductPrice] = useState('');
     const [productImageUrl, setProductImageUrl] = useState('');
@@ -46,6 +49,10 @@ function AddProductForm() {
                 setProductDesc(products.data.desc);
                 setShowContent(true);
             });
+            dispatchAction({
+                type: actionsTypes.CURRENT_LINK_ACTION,
+                currentLink: '/manage-products'
+            });
         } else {
             setProductName('');
             setProductPrice('');
@@ -79,14 +86,12 @@ function AddProductForm() {
                     <Form.Control as="textarea" rows="3" placeholder="Podaj opis"  value={productDesc} onChange={(e) => setProductDesc(e.target.value)}/>
                 </Form.Group>
 
-                <Button variant="primary" type="submit">
-                    Zapisz
-                </Button>
+                <Button variant="primary" type="submit">Zapisz</Button>
             </Form>
     )
 
     return (
-        <div className="product-form">
+        <div className="add-form">
             {content}
         </div>
     )

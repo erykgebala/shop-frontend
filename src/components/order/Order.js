@@ -17,7 +17,7 @@ function Order(props) {
                     return (
                         <tr key={productItem.product._id}>
                             <td>{props.order._id}</td>
-                            <td>{productItem.product.name}</td>
+                            <td>{productItem.product.name} ({productItem.product._id})</td>
                             <td>{productItem.quantity}</td>
                             <td>{props.order.state}</td>
                         </tr>
