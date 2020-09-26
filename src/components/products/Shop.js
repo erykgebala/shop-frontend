@@ -4,10 +4,12 @@ import ProductList from './ProductList'
 
 function Shop() {
     const [products, setProducts] = useState([]);
-    
+    const [showContent, setShowContent] = useState(false);
+
     const getProducts = () => {
         axios.get('/api/products').then((products) => {
             setProducts(products.data);
+            setShowContent(true);
         })
     }
 
@@ -17,7 +19,7 @@ function Shop() {
 
     return (
         <div>
-            <ProductList products={products} mode={'USER'}/>
+            {showContent ? <ProductList products={products} mode={'USER'}/> : '' }
         </div>
     )
 }

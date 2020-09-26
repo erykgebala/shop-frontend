@@ -13,7 +13,7 @@ function Product(props) {
 
     const getProduct = (event) => {
         event.preventDefault();
-        history.push('/product-details/' + props.product._id);
+        history.push('/add-product/' + props.product._id);
     }
 
     const addToCart = (event) => {

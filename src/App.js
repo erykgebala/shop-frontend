@@ -8,6 +8,7 @@ import ProductDetails from './components/products/ProductDetails';
 import ProductList from './components/products/ProductList';
 import ManageProducts from './components/products/ManageProducts';
 import Shop from './components/products/Shop';
+import OrderList from './components/order/OrderList';
 
 function App() {
   return (
@@ -28,12 +29,17 @@ function App() {
             </Route>
             <Route path="/orders">
                 <Header/>
+                <OrderList/>
+            </Route>
+            <Route path="/add-product/:id">
+                <Header/>
+                <AddProductForm/>
             </Route>
             <Route path="/add-product">
                 <Header/>
                 <AddProductForm/>
             </Route>
-            <Route path="/manage-product">
+            <Route path="/manage-products">
                 <Header/>
                 <ManageProducts/>
             </Route>

@@ -22,7 +22,7 @@ function Header() {
             </Nav>
              <Nav>
                 <Nav.Link className={currentLink == '/add-product' ? 'active': ''} onClick={(e) => goto(e, '/add-product')}>Dodaj produkt</Nav.Link>
-                <Nav.Link className={currentLink == '/manage-product' ? 'active': ''} onClick={(e) => goto(e, '/manage-product')}>Zarzadzaj produktami</Nav.Link>
+                <Nav.Link className={currentLink == '/manage-products' ? 'active': ''} onClick={(e) => goto(e, '/manage-products')}>Zarzadzaj produktami</Nav.Link>
                 <Nav.Link className="mr-auto" href="#link">Zaloguj</Nav.Link>
             </Nav>
         </Navbar>

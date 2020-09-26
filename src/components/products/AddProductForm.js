@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button, Form } from 'react-bootstrap'
+import { useParams } from 'react-router-dom';
 import './AddProductForm.css'
 import axios from '../../axiosConfig'; 
 import { useHistory } from 'react-router-dom';
@@ -10,21 +11,53 @@ function AddProductForm() {
     const [productImageUrl, setProductImageUrl] = useState('');
     const [productDesc, setProductDesc] = useState('');
     const history = useHistory();
+    const  { id } = useParams();
+    const [showContent, setShowContent] = useState(false);
     
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.post('/api/products', {
-            name: productName,
-            price: productPrice,
-            imageUrl: productImageUrl,
-            desc: productDesc
-        }).then(() => {
-            history.push('/products');
-        });
+        if (id) {
+            axios.patch('/api/products/' + id, {
+                name: productName,
+                price: productPrice,
+                imageUrl: productImageUrl,
+                desc: productDesc
+            }).then(() => {
+                history.push('/manage-products');
+            });
+        } else {
+            axios.post('/api/products', {
+                name: productName,
+                price: productPrice,
+                imageUrl: productImageUrl,
+                desc: productDesc
+            }).then(() => {
+                history.push('/manage-products');
+            });
+        }
     }
 
-    return (
-        <div className="product-form">
+    useEffect(() =>{
+        if (id) {
+            axios.get('/api/products/' + id).then((products) => {
+                setProductName(products.data.name);
+                setProductPrice(products.data.price);
+                setProductImageUrl(products.data.imageUrl);
+                setProductDesc(products.data.desc);
+                setShowContent(true);
+            });
+        } else {
+            setProductName('');
+            setProductPrice('');
+            setProductImageUrl('');
+            setProductDesc('');
+            setShowContent(true);
+        }
+    }, [id]);
+
+    let content;
+    if (showContent) (
+        content = 
             <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="formBasicName">
                     <Form.Label>Nazwa</Form.Label>
@@ -50,6 +83,11 @@ function AddProductForm() {
                     Zapisz
                 </Button>
             </Form>
+    )
+
+    return (
+        <div className="product-form">
+            {content}
         </div>
     )
 }

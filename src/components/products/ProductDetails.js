@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import axios from '../../axiosConfig';
 import Product from './Product';
-import './ProductDetails.css'
 
 function ProductDetails() {
     const [product, setProduct] = useState('');

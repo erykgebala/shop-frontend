@@ -1,0 +1,30 @@
+.order-list {
+    padding: 20px;
+}
+
+.product-list {
+    display: flex;
+    padding: 0 10px;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+.product-list > .card {
+    margin: 20px 10px;
+}
+
+.product-detail {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+}
+.empty-list {
+    padding: 10px;
+    text-align: center;
+    background: lightskyblue;
+    color: #fff;
+}
+
+.orders td {
+    width: 25%;
+}

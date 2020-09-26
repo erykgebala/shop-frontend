@@ -3,7 +3,7 @@ import ProductList from './ProductList'
 import axios from '../../axiosConfig'; 
 import { useHistory } from 'react-router-dom';
 
-function ManageProducts() {
+function ManageProducts(props) {
     const [products, setProducts] = useState([]);
     const history = useHistory();
 
